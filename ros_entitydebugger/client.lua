@@ -1,3 +1,12 @@
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
+
 local enabled = false
 local On = false
 local _on = false
@@ -81,9 +90,7 @@ function ManipulationLogic(cam, x, y, z)
 	local handle = StartShapeTestRay(curVec.x, curVec.y, curVec.z, targetVec.x, targetVec.y, targetVec.z, -1)
 	local _, hit, endCoords, _, entity = GetShapeTestResult(handle)
 	if DoesEntityExist(entity) then
-		print("okok")
 	end
-	print(entity)
 	if IsEntityAnObject(entity) then
 		entity = entity
 		type = "Obect"
